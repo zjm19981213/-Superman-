@@ -1,0 +1,65 @@
+<nz-layout>
+    <nz-header>筛选查询</nz-header>
+    <nz-content>
+        <span>阶段名称
+            <button nz-button nzType="default" class="head-button" >全部</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            阶段编号
+            <button nz-button nzType="default" class="head-button">全部</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            当前状态
+            <nz-select nzMode="tags" nzPlaceHolder="启用" [(ngModel)]="listOfTagOptions">
+                <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
+                </nz-option>
+            </nz-select>
+        </span>
+        <button nz-button nzType="primary" class="clear-select">清空条件</button>
+        <button nz-button nzType="primary" class="clear-select">查询</button>
+    </nz-content>
+    
+</nz-layout>
+
+<nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listOfAllData"
+    (nzCurrentPageDataChange)="currentPageDataChange($event)">
+    <table id="customers">
+        <tr class="hand">
+            <th colspan="7">
+                <button nz-button nzType="primary" id="new-button">新建</button>
+                <span id="right-span">
+                    <nz-select nzMode="tags" nzPlaceHolder="设置显示字段" [(ngModel)]="listOfTagOptions">
+                        <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value">
+                        </nz-option>
+                    </nz-select>
+            
+                    <nz-button-group>
+                        <button nz-button="primary"><i nz-icon nzType="left"></i></button>
+                        <button nz-button="primary"><i nz-icon nzType="right"></i></button>
+                    </nz-button-group>
+                </span>
+            </th>
+        </tr>
+        <tr>
+            <th>序号</th>
+            <th>阶段编号</th>
+            <th>阶段名称</th>
+            <th>周龄范围</th>
+            <th>创建日期</th>
+            <th>操作</th>
+            <th nzWidth="100px" nzRight="0px">Action</th>
+            
+        </tr>
+        <tr *ngFor="let data of rowSelectionTable.data">
+            <td>{{ data.name }}</td>
+            <td>{{ data.age }}</td>
+            <td>{{ data.address }}</td>
+            <td>{{ data.address }}</td>
+            <td>{{ data.address }}</td>
+            <td>{{ data.address }}</td>
+            <td nzRight="0px">
+                <a>停用</a>
+            </td>
+        </tr>
+    </table>
+</nz-table>
+
+
